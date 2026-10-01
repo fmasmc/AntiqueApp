@@ -1,0 +1,212 @@
+﻿<Page x:Class="AntiqueApp.Views.Pages.ExhibitManagementPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:vm="clr-namespace:AntiqueApp.ViewModels"
+      xmlns:local="clr-namespace:AntiqueApp.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="800"
+      Title="ExhibitManagementPage">
+
+    <Page.DataContext>
+        <vm:ExhibitManagementViewModel/>
+    </Page.DataContext>
+ 
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <ui:TextBlock
+                Text="Добавление экспоната"
+                FontSize="18"
+                HorizontalAlignment="Center"
+                FontWeight="Bold"/>
+
+            <Grid Grid.Row="1" Margin="10">
+
+                <StackPanel Orientation="Vertical">
+
+                    <ui:TextBlock 
+                        Text="Автор"
+                        FontWeight="DemiBold"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <ui:TextBlock
+                                Margin="0,10,0,0"
+                                Text="Имя"/>
+
+                            <ui:TextBox
+                                Text="{Binding AuthorName}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Margin="5,0,0,0">
+                            <ui:TextBlock
+                                Margin="0,10,0,0"
+                                Text="Фамилия"/>
+
+                            <ui:TextBox
+                                Text="{Binding AuthorMiddleName}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Margin="5,0,0,0">
+                            <ui:TextBlock
+                                Margin="0,10,0,0"
+                                Text="Отчество"/>
+
+                            <ui:TextBox
+                                Text="{Binding AuthorLastName}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <ui:TextBlock
+                        Margin="0,10,0,0"
+                        Text="Дата рождения"/>
+
+                    <DatePicker
+                        SelectedDate="{Binding AuthorBirthDate}"/>
+
+                    <ui:TextBlock 
+                        Text="Экспонат"
+                        FontWeight="DemiBold" Margin="0,10,0,0"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Margin="0,0,2.5,0">
+                            <ui:TextBlock
+                                Margin="0,10,0,0"
+                                Text="Материал"/>
+                            <ComboBox
+                                SelectedItem="{Binding Material}"
+                                ItemsSource="{Binding Materials}"
+                                DisplayMemberPath="Name"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="0" Grid.Column="1" Margin="2.5,0,0,0">
+                            <ui:TextBlock
+                                Margin="0,10,0,0"
+                                Text="Подкатегория"/>
+                            <ComboBox
+                                SelectedItem="{Binding Subcategory}"
+                                ItemsSource="{Binding Subcategories}"
+                                DisplayMemberPath="Name"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,2.5,0">
+                            <ui:TextBlock
+                                Margin="0,10,0,0"
+                                Text="Год создания"/>
+                            <DatePicker
+                                SelectedDate="{Binding CreationYear}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="2.5,0,0,0">
+                            <ui:TextBlock
+                                Margin="0,10,0,0"
+                                Text="Цена"/>
+                            <ui:TextBox 
+                                Text="{Binding Price}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,2.5,0">
+                            <ui:TextBlock
+                                Margin="0,10,0,0"
+                                Text="Описание"/>
+                            <ui:TextBox 
+                                Text="{Binding Description}"
+                                MinHeight="150"
+                                TextWrapping="Wrap"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="2.5,0,0,0">
+                            <ui:TextBlock
+                                Margin="0,10,0,0"
+                                Text="Картинка"/>
+                            <ui:Button
+                                Content="Выбрать картинку"
+                                HorizontalAlignment="Stretch"
+                                Appearance="Secondary"
+                                Command="{Binding PickPictureCommand}"/>
+                            <ui:Image
+                                MaxHeight="110"
+                                HorizontalAlignment="Center"
+                                CornerRadius="5"
+                                Margin="5"
+                                Source="{Binding Picture}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <ui:Button
+                        Appearance="Primary"
+                        Content="Создать экспонат"
+                        Command="{Binding CreateExhibitCommand}"
+                        Margin="0,20,0,0"/>
+
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="1" Margin="10">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <ui:TextBlock
+                Text="Редактирование цены"
+                FontSize="18"
+                HorizontalAlignment="Center"
+                FontWeight="Bold"/>
+
+            <ComboBox 
+                Grid.Row="1"
+                Margin="0,20,0,0"
+                ItemsSource="{Binding Exhibits}"
+                SelectedItem="{Binding SelectedExhibit}"
+                DisplayMemberPath="Description"/>
+
+            <ui:TextBox
+                Text="{Binding EditablePrice}"
+                Margin="0,10,0,0"
+                Grid.Row="2"/>
+
+            <ui:Button
+                Margin="0,10,0,0"
+                Content="Изменить цену"
+                HorizontalAlignment="Stretch"
+                Appearance="Primary"
+                Command="{Binding EditPriceCommand}"
+                Grid.Row="3"/>
+
+
+        </Grid>
+    </Grid>
+</Page>

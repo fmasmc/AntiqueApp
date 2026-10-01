@@ -1,0 +1,129 @@
+﻿<Window x:Class="AntiqueApp.Views.UserView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:vm="clr-namespace:AntiqueApp.ViewModels"
+        xmlns:local="clr-namespace:AntiqueApp.Views"
+        mc:Ignorable="d"
+        Title="UserView" Height="720" Width="1240">
+
+    <Window.DataContext>
+        <vm:UserViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ui:NavigationView>
+            <ui:NavigationView.MenuItems>
+
+                <ui:NavigationViewItem Content="Живопись">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="PaintBrush24"/>
+                    </ui:NavigationViewItem.Icon>
+                    <ui:NavigationViewItem.MenuItems>
+                        <ui:NavigationViewItem Content="Портрет" Command="{Binding UpdatePageCommand}" CommandParameter="Портрет"/>
+                        <ui:NavigationViewItem Content="Пейзаж" Command="{Binding UpdatePageCommand}" CommandParameter="Пейзаж"/>
+                        <ui:NavigationViewItem Content="Натюрморт" Command="{Binding UpdatePageCommand}" CommandParameter="Натюрморт"/>
+                        <ui:NavigationViewItem Content="Историческая живопись" Command="{Binding UpdatePageCommand}" CommandParameter="Историческая живопись"/>
+                    </ui:NavigationViewItem.MenuItems>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="Графика">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="DrawShape24"/>
+                    </ui:NavigationViewItem.Icon>
+                    <ui:NavigationViewItem.MenuItems>
+                        <ui:NavigationViewItem Content="Плакат" Command="{Binding UpdatePageCommand}" CommandParameter="Плакат"/>
+                        <ui:NavigationViewItem Content="Компьютерная графика" Command="{Binding UpdatePageCommand}" CommandParameter="Компьютерная графика"/>
+                        <ui:NavigationViewItem Content="Каллиграфия" Command="{Binding UpdatePageCommand}" CommandParameter="Каллиграфия"/>
+                        <ui:NavigationViewItem Content="Тушь" Command="{Binding UpdatePageCommand}" CommandParameter="Тушь"/>
+                        <ui:NavigationViewItem Content="Сепия" Command="{Binding UpdatePageCommand}" CommandParameter="Сепия"/>
+                    </ui:NavigationViewItem.MenuItems>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="Скульптура">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Cube24"/>
+                    </ui:NavigationViewItem.Icon>
+                    <ui:NavigationViewItem.MenuItems>
+                        <ui:NavigationViewItem Content="Абстрактная скульптура" Command="{Binding UpdatePageCommand}" CommandParameter="Абстрактная скульптура"/>
+                        <ui:NavigationViewItem Content="Бронзовая скульптура" Command="{Binding UpdatePageCommand}" CommandParameter="Бронзовая скульптура"/>
+                        <ui:NavigationViewItem Content="Мраморная скульптура" Command="{Binding UpdatePageCommand}" CommandParameter="Мраморная скульптура"/>
+                        <ui:NavigationViewItem Content="Ледяная скульптура" Command="{Binding UpdatePageCommand}" CommandParameter="Ледяная скульптура"/>
+                    </ui:NavigationViewItem.MenuItems>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="Декоративно-прикладное искусство">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="BuildingSkyscraper24"/>
+                    </ui:NavigationViewItem.Icon>
+                    <ui:NavigationViewItem.MenuItems>
+                        <ui:NavigationViewItem Content="Керамика" Command="{Binding UpdatePageCommand}" CommandParameter="Керамика"/>
+                        <ui:NavigationViewItem Content="Фарфор" Command="{Binding UpdatePageCommand}" CommandParameter="Фарфор"/>
+                        <ui:NavigationViewItem Content="Глина" Command="{Binding UpdatePageCommand}" CommandParameter="Глина"/>
+                        <ui:NavigationViewItem Content="Мозаика" Command="{Binding UpdatePageCommand}" CommandParameter="Мозаика"/>
+                        <ui:NavigationViewItem Content="Резьба по дереву" Command="{Binding UpdatePageCommand}" CommandParameter="Резьба по дереву"/>
+                    </ui:NavigationViewItem.MenuItems>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="Цифровое искусство">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Laptop24"/>
+                    </ui:NavigationViewItem.Icon>
+                    <ui:NavigationViewItem.MenuItems>
+                        <ui:NavigationViewItem Content="Пиксель-арт" Command="{Binding UpdatePageCommand}" CommandParameter="Пиксель-арт"/>
+                        <ui:NavigationViewItem Content="Векторная графика" Command="{Binding UpdatePageCommand}" CommandParameter="Векторная графика"/>
+                        <ui:NavigationViewItem Content="3D-моделирование" Command="{Binding UpdatePageCommand}" CommandParameter="3D-моделирование"/>
+                        <ui:NavigationViewItem Content="AI-арт" Command="{Binding UpdatePageCommand}" CommandParameter="AI-арт"/>
+                    </ui:NavigationViewItem.MenuItems>
+                </ui:NavigationViewItem>
+            </ui:NavigationView.MenuItems>
+            
+            <ui:NavigationView.FooterMenuItems>
+                <ui:NavigationViewItem Content="Профиль" Command="{Binding OpenProfilePageCommand}" Visibility="{Binding ProfileVisibility}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Person24"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="Корзина" Command="{Binding OpenCartPageCommand}" Visibility="{Binding OpenCartVisibility}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Cart24"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="Управление экспонатами" Command="{Binding OpenManageExhibitsPageCommand}" Visibility="{Binding ManageExhibitsVisibility}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Symbols24"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="Заказы" Command="{Binding OpenOrderPagesCommand}" Visibility="{Binding OrdersVisibility}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Library24"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="Клиенты" Command="{Binding OpenClientsPagesCommand}" Visibility="{Binding ClientsVisibility}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="PersonAccounts24"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="История входа" Command="{Binding OpenLoginHistoryCommand}" Visibility="{Binding LoginHistoryVisibility}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="History24"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+            </ui:NavigationView.FooterMenuItems>
+        </ui:NavigationView>
+
+        <Frame Content="{Binding RootPage}" 
+               NavigationUIVisibility="Hidden"
+               Grid.Column="1"/>
+    </Grid>
+</Window>
